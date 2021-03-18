@@ -5,17 +5,30 @@ class SearchBar extends React.Component {
   // onClick -- User clicks on something
   // onSubmit -- User submits a form
 
-  // onInputChange = (event) => {
-  //   console.log(event);
-  // };
+  // Controlled = stored on state property inside of components
+  // Uncontrolled = stored inside of DOM
+
+  // this is a reference to the class
+
+  state = { term: "" };
+
+  onFormSubmit = (event) => {
+    event.preventDefault(); // prevent submission to sever after each onChange Event
+
+    this.props.onSubmit(this.state.term) // props.onSubmit is a pass down from parent to child, and will invoke
+  };
 
   render() {
     return (
       <div className="ui segment">
-        <form className="ui form">
+        <form className="ui form" onSubmit={this.onFormSubmit}>
           <div className="field">
             <label>Image Search</label>
-            <input type="text" onChange={(e) => console.log(e.target.value)} />
+            <input
+              type="text"
+              value={this.state.term} // re-evaluated on each render caused by changing the state (term)
+              onChange={(e) => this.setState({ term: e.target.value })}
+            />
           </div>
         </form>
       </div>
