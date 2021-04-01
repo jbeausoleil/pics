@@ -15,7 +15,8 @@ class SearchBar extends React.Component {
   onFormSubmit = (event) => {
     event.preventDefault(); // prevent submission to sever after each onChange Event
 
-    this.props.onSubmit(this.state.term) // props.onSubmit is a pass down from parent to child, and will invoke
+    // props.onSubmit is a pass down from parent to child, and will invoke onSubmit when onFormSubmit is invoked
+    this.props.onSubmit(this.state.term);
   };
 
   render() {
